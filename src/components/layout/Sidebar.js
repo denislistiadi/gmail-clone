@@ -2,34 +2,52 @@ import React from 'react'
 import styled from 'styled-components'
 import Compose from '../buttons/Compose'
 import { sidebarButtonItems } from '../data/SidebarButtonItems'
+import VideocamIcon from '@material-ui/icons/Videocam'
+import KeyboardIcon from '@material-ui/icons/Keyboard'
+import { AccountCircle } from '@material-ui/icons'
+import { bottomIcons } from '../data/BottomIconsData'
 
 const Sidebar = () => {
     return (
         <div>
             <Wrapper>
-                <ComposeWrapper>
-                    <Compose/>
-                </ComposeWrapper>
+                    <ComposeWrapper>
+                        <Compose/>
+                    </ComposeWrapper>
 
-                <SideButtonWrapper>
-                    {
-                        sidebarButtonItems.map(item => (
-                            <SidebarButtonItem>{item.icon} {item.text}</SidebarButtonItem>
-                        ))
-                    }
-                </SideButtonWrapper>
+                    <SideButtonWrapper>
+                        {
+                            sidebarButtonItems.map(item => (
+                                <SidebarButtonItem>{item.icon} {item.text}</SidebarButtonItem>
+                            ))
+                        }
+                    </SideButtonWrapper>
 
-                <MeetWrapper>
+                    <SidebarSectionWrapper>
+                        <Title>Meet</Title>
+                        <p>
+                            <VideocamIcon/> New Meeting
+                        </p>
+                        <p>
+                            <KeyboardIcon/> Join Meeting
+                        </p>
+                    </SidebarSectionWrapper>
 
-                </MeetWrapper>
-
-                <HangoutsWrapper>
-
-                </HangoutsWrapper>
-
-                <BottomIconsWrapper>
-
-                </BottomIconsWrapper>
+                    <SidebarSectionWrapper>
+                        <Title>Hangouts</Title>
+                        <p>
+                            <AccountCircle/> Denis Listiadi
+                        </p>
+                    </SidebarSectionWrapper>
+                    <BottomIconsWrapper>
+                        {
+                            bottomIcons.map(icon =>(
+                                <>
+                                    {icon}
+                                </>
+                            ) )
+                        }
+                    </BottomIconsWrapper>
             </Wrapper>
         </div>
     )
@@ -39,7 +57,9 @@ export default Sidebar
 
 const Wrapper = styled.div`
     border-right: 1px solid lightgray;
-    height: 100vh;
+    height: calc(100vh-77px);
+    display: flex;
+    flex-direction: column;
 
     @media(max-width: 600px) {
         display: none;
@@ -68,8 +88,26 @@ const SidebarButtonItem = styled.div`
     }
 `
 
-const MeetWrapper = styled.div``
+const SidebarSectionWrapper = styled.div`
+    border-top: 1px solid lightgray;
 
-const HangoutsWrapper = styled.div``
+    p {
+        color: gray;
+        display: grid;
+        grid-template-columns: 15% auto;
+        padding: 5px 25px;
+        height: 25px;
+        align-items: center;
+    }
+`
 
-const BottomIconsWrapper = styled.div``
+const Title = styled.h4`
+    padding-left: 25px;
+    margin-bottom: 3px;
+    margin-top: 4px;    
+`
+
+const BottomIconsWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+`
